@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* index.css or App.css */
+html {
+  scroll-behavior: smooth;
+}
+body{
+    font-family: 'Poppins',sans-serif;
+    color: white;
+}
+.home-section{
+    background: url('../assets/wp11769425-dark-green-4k-wallpapers.jpg') no-repeat center center fixed;
+  max-height: 100vh;
+  background-size: cover;
+}
