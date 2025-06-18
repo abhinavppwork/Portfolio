@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './Home.css';
 import r1 from '../assets/Avatar/c1.jpg';
-
+import resPDF from '../assets/res.pdf';
 export default function Home() {
   const ref = useRef(null);
 
@@ -38,9 +38,11 @@ export default function Home() {
           constantly building and debugging projects to level up my skills.
         </p>
         <div className="btn-container">
-          <button className="spotify-btn">My resume</button>
+          <a href={resPDF} target="_blank" rel="noopener noreferrer">
+            <button className="spotify-btn">My resume</button>
+          </a>
           <button className="transparent-btn">Learn more</button>
-        </div>
+          </div>
       </div>
     </section>
   );

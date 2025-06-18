@@ -1,31 +1,31 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa'; // Import GitHub icon
 import './Project.css';
-import pythonLanguageConverter from '../assets/Projects/translator.png';
+import pythonLanguageConverter from '../assets/Projects/library.png';
 import lumora from '../assets/projects/lumora.png';
-import rockPaperScissors from '../assets/projects/rock.png';
+import rockPaperScissors from '../assets/projects/chat.png';
 
 const projects = [
   {
-    title: 'Python Language Converter',
-    description: 'A Python-based language converter that supports multiple languages.',
+    title: 'Digital Academic Library System',
+    description: 'Structured digital library for academic resources.',
     image: pythonLanguageConverter,
-    link: 'https://github.com/abhinavppwork/Language-Translator', // Replace with project link
-    github: 'https://github.com/abhinavppwork/Language-Translator', // Replace with GitHub repo link
+    link: 'https://digital-library-delta.vercel.app/', 
+    github: 'https://github.com/abhinavppwork/Digital-Library', 
   },
   {
     title: 'Lumora Learning Platform',
     description: 'A MERN stack learning platform with videos.',
     image: lumora,
-    link: 'https://lumora-web.netlify.app', // Replace with project link
-    github: 'https://github.com/abhinavppwork/Lumora', // Replace with GitHub repo link
+    link: 'https://lumora-web.netlify.app',
+    github: 'https://github.com/abhinavppwork/Lumora', 
   },
   {
-    title: 'Rock, Paper, Scissors Game',
-    description: 'A simple rock, paper, scissors game built with JavaScript.',
+    title: 'Chatting Application Using Socket.io',
+    description: 'A real-time chatting application built with Socket.io.',
     image: rockPaperScissors,
-    link: '#', // Replace with project link
-    github: '#', // Replace with GitHub repo link
+    link: 'https://github.com/abhinavppwork/ChatterBox---ChattingApplication', 
+    github: 'https://github.com/abhinavppwork/ChatterBox---ChattingApplication', 
   },
 ];
 
