@@ -1,114 +1,124 @@
-import { useState, useEffect } from "react";
-import "./Header.css";
-import logo from "../assets/Logo/f5.png";
+import React, { useState, useEffect } from 'react';
+import './Header.css';
 
-export default function Header() {
-  const [time, setTime] = useState(new Date());
-  const [activeNav, setActiveNav] = useState("#home");
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
-    // Update time every second
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    // Scroll event listener to update header transparency
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateTime = () => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      setCurrentTime(timeString);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    updateTime();
+    const timeInterval = setInterval(updateTime, 1000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(timeInterval);
+    };
   }, []);
 
-  // Handle nav click and close mobile menu
-  const handleNavClick = (navId) => {
-    setActiveNav(navId);
-    setIsMenuOpen(false);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Prevent body scroll when menu is open
+    if (!isMobileMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
   };
 
-  // Close menu when clicking outside
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
+  // Close mobile menu when clicking on a link
+  const handleLinkClick = () => {
+    closeMobileMenu();
+  };
+
+  // Close mobile menu when clicking outside
   useEffect(() => {
-    if (!isMenuOpen) return;
-    
     const handleClickOutside = (event) => {
-      if (isMenuOpen && !event.target.closest('.nav') && !event.target.closest('.mobile-toggle')) {
-        setIsMenuOpen(false);
+      if (isMobileMenuOpen && !event.target.closest('.header') && !event.target.closest('.nav')) {
+        closeMobileMenu();
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
+    if (isMobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isMenuOpen]);
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
-    <header className={`header ${isScrolled ? "scrolled" : ""}`}>
-      {/* Logo */}
-      <div className="logo">
-        <img src={logo} alt="Logo" />
-      </div>
-
-      {/* Navigation */}
-      <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
-        <a
-          href="#home"
-          className={activeNav === "#home" ? "active" : ""}
-          onClick={() => handleNavClick("#home")}
+    <>
+      <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`}>
+          <a href="#home" onClick={handleLinkClick}>Home</a>
+          <a href="#about" onClick={handleLinkClick}>About</a>
+          <a href="#skills" onClick={handleLinkClick}>Skills</a>
+          <a href="#projects" onClick={handleLinkClick}>Projects</a>
+          <a href="#contact" onClick={handleLinkClick}>Contact</a>
+          <div className="timer">{currentTime}</div>
+        </nav>
+        
+        <button 
+          className={`mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
         >
-          Home
-        </a>
-        <a
-          href="#about"
-          className={activeNav === "#about" ? "active" : ""}
-          onClick={() => handleNavClick("#about")}
-        >
-          About
-        </a>
-        <a
-          href="#skills"
-          className={activeNav === "#skills" ? "active" : ""}
-          onClick={() => handleNavClick("#skills")}
-        >
-          Skills
-        </a>
-        <a
-          href="#projects"
-          className={activeNav === "#projects" ? "active" : ""}
-          onClick={() => handleNavClick("#projects")}
-        >
-          Projects
-        </a>
-        <a
-          href="#contact"
-          className={activeNav === "#contact" ? "active" : ""}
-          onClick={() => handleNavClick("#contact")}
-        >
-          Contact
-        </a>
-
-        {/* Live Timer */}
-        <div className="timer">{time.toLocaleTimeString()}</div>
-      </nav>
-
-      {/* Mobile Menu Toggle Button */}
-      <button 
-        className={`mobile-toggle ${isMenuOpen ? 'active' : ''}`}
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-label="Toggle navigation menu"
-      >
-        <span className="hamburger-line"></span>
-        <span className="hamburger-line"></span>
-        <span className="hamburger-line"></span>
-      </button>
-    </header>
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
+        </button>
+      </header>
+      
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="nav-overlay active"
+          onClick={closeMobileMenu}
+          aria-hidden="true"
+        ></div>
+      )}
+    </>
   );
-}
+};
+
+export default Header;

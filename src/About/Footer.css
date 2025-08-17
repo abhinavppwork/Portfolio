@@ -2,7 +2,6 @@
 
 .footer {
     width: 100%;
-
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     margin-top: 3rem;
@@ -39,12 +38,55 @@
     margin-top: 0.5rem;
   }
   
-  /* Responsive styles */
-  @media (max-width: 640px) {
+  /* Enhanced responsive styles */
+  @media (max-width: 1200px) {
+    .footer-container {
+      max-width: 1100px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .footer-container {
+      max-width: 900px;
+    }
+    
+    .footer {
+      margin-top: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+      margin-top: 2rem;
+    }
+    
+    .footer-divider {
+      margin-bottom: 1.25rem;
+    }
+    
+    .footer-container {
+      max-width: 600px;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    .footer-copyright {
+      font-size: 0.8rem;
+    }
+    
+    .footer-message {
+      font-size: 0.7rem;
+      margin-top: 0.4rem;
+    }
+  }
+  
+  @media (max-width: 600px) {
     .footer {
       padding-top: 1rem;
       padding-bottom: 1rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     
     .footer-divider {
@@ -52,19 +94,84 @@
     }
     
     .footer-container {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
+      max-width: 500px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    
+    .footer-copyright {
+      font-size: 0.75rem;
+    }
+    
+    .footer-message {
+      font-size: 0.65rem;
+      margin-top: 0.35rem;
     }
   }
   
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (max-width: 480px) {
+    .footer {
+      padding-top: 0.875rem;
+      padding-bottom: 0.875rem;
+      margin-top: 1.25rem;
+    }
+    
+    .footer-divider {
+      margin-bottom: 0.875rem;
+    }
+    
     .footer-container {
-      max-width: 90%;
+      max-width: 400px;
+      padding-left: 0.375rem;
+      padding-right: 0.375rem;
+    }
+    
+    .footer-copyright {
+      font-size: 0.7rem;
+    }
+    
+    .footer-message {
+      font-size: 0.6rem;
+      margin-top: 0.3rem;
     }
   }
   
-  @media (min-width: 1024px) {
+  @media (max-width: 360px) {
+    .footer {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .footer-divider {
+      margin-bottom: 0.75rem;
+    }
+    
     .footer-container {
-      max-width: 1024px;
+      max-width: 350px;
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+    }
+    
+    .footer-copyright {
+      font-size: 0.65rem;
+    }
+    
+    .footer-message {
+      font-size: 0.55rem;
+      margin-top: 0.25rem;
+    }
+  }
+  
+  /* Landscape orientation adjustments for mobile */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .footer {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .footer-container {
+      max-width: 700px;
     }
   }
