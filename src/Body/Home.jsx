@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './Home.css';
 import r1 from '../assets/Avatar/c1.jpg';
-import resPDF from '../assets/res.pdf';
+import resPDF from '../assets/res f.pdf';
 export default function Home() {
   const ref = useRef(null);
 

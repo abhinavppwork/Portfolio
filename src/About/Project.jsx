@@ -4,8 +4,17 @@ import './Project.css';
 import pythonLanguageConverter from '../assets/Projects/library.png';
 import lumora from '../assets/projects/lumora.png';
 import rockPaperScissors from '../assets/projects/chat.png';
+import pixelPost from "../assets/Projects/blog.png";
 
 const projects = [
+  {
+    title: 'PixelPost Blog Platform',
+    description: 'A full-stack blog application where users can read articles and authors can post content, featuring a seamless UI and mobile compatibility.',
+    image: pixelPost, // Using existing image for now, you can add a specific image later
+    link: 'https://pixel-post-ten.vercel.app/',
+    github: 'https://github.com/abhinavppwork/PixelPost',
+    tech: ['MERN Stack', 'MongoDB', 'Express.js', 'React', 'Node.js']
+  },
   {
     title: 'Digital Academic Library System',
     description: 'Structured digital library for academic resources with advanced search and categorization.',
